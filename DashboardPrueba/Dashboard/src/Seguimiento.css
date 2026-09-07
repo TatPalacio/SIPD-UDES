@@ -1,0 +1,346 @@
+.seg-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px 32px 48px;
+  background: #f4f6f9;
+  min-height: 100vh;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* Encabezado */
+.seg-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.seg-title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.seg-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Panel principal (bitácora) */
+.seg-panel {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e9f0;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.seg-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.seg-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.seg-panel-heading h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.seg-pill {
+  background: #e6f4ea;
+  color: #1a7f37;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Filtros */
+.seg-filtros {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.seg-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.seg-filtro select,
+.seg-campo select,
+.seg-campo textarea {
+  border: 1px solid #d7dce3;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #1f2937;
+  background: #ffffff;
+  font-family: inherit;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.seg-filtro select:focus,
+.seg-campo select:focus,
+.seg-campo textarea:focus {
+  border-color: #2f6fed;
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
+}
+
+/* Tabla */
+.seg-tabla-wrap {
+  overflow-x: auto;
+  border: 1px solid #edf0f4;
+  border-radius: 10px;
+}
+
+.seg-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.seg-tabla thead th {
+  text-align: left;
+  padding: 12px 16px;
+  background: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 12.5px;
+  border-bottom: 1px solid #edf0f4;
+  white-space: nowrap;
+}
+
+.seg-tabla tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f3f6;
+  color: #374151;
+  vertical-align: top;
+}
+
+.seg-tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.seg-tabla tbody tr:hover {
+  background: #fafbfd;
+}
+
+.seg-estudiante-link {
+  color: #2f6fed;
+  font-weight: 600;
+  font-size: 13.5px;
+  text-decoration: none;
+}
+
+.seg-estudiante-link:hover {
+  text-decoration: underline;
+}
+
+.seg-estudiante-nombre {
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.seg-observaciones {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seg-link-btn {
+  border: none;
+  background: none;
+  color: #2f6fed;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.seg-link-btn:hover {
+  text-decoration: underline;
+}
+
+.seg-vacio {
+  text-align: center;
+  color: #9ca3af;
+  padding: 32px 16px;
+}
+
+/* Badges de estado */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge--pendiente {
+  background: #f3f0ff;
+  color: #6d4fd6;
+}
+
+.badge--contactado {
+  background: #fff4e5;
+  color: #b06a12;
+}
+
+.badge--acompanamiento {
+  background: #e8f0fe;
+  color: #2f6fed;
+}
+
+.badge--seguimiento {
+  background: #fff4e5;
+  color: #b06a12;
+}
+
+.badge--cerrado {
+  background: #e6f4ea;
+  color: #1a7f37;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn--primary {
+  background: #2f6fed;
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background: #2359c9;
+}
+
+.btn--ghost {
+  background: #ffffff;
+  color: #374151;
+  border-color: #d7dce3;
+}
+
+.btn--ghost:hover {
+  background: #f3f4f6;
+}
+
+.btn-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Formulario de nueva intervención */
+.seg-form-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e9f0;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.seg-form-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.seg-form-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #e8f0fe;
+  color: #2f6fed;
+  font-size: 14px;
+}
+
+.seg-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.seg-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 18px;
+}
+
+.seg-campo--full {
+  grid-column: 1 / -1;
+}
+
+.seg-campo textarea {
+  resize: vertical;
+  min-height: 84px;
+  font-weight: 400;
+}
+
+.seg-form-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .seg-page {
+    padding: 20px;
+  }
+
+  .seg-filtros,
+  .seg-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seg-observaciones {
+    max-width: 140px;
+  }
+}
