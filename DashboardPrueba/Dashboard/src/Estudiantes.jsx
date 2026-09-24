@@ -1,23 +1,15 @@
 import React, { useMemo, useState } from "react";
 import {
-  LayoutGrid, Users, TrendingUp, Activity, BarChart3, Bell,
-  School, Search, Plus,
+  Bell, Search, Plus,
 } from "lucide-react";
 import "./Estudiantes.css";
+import Sidebar from "./components/Sidebar.jsx";
 
 /* ------------------------------------------------------------------ */
 /* Datos simulados (vendrán del backend vía API más adelante)          */
 /* Total fijado en 1,247 para ser consistente con la vista de Inicio   */
 /* (834 bajo / 289 medio / 124 alto), igual que en el Figma.           */
 /* ------------------------------------------------------------------ */
-const NAV_ITEMS = [
-  { key: "dashboard", label: "Inicio", icon: LayoutGrid },
-  { key: "estudiantes", label: "Estudiantes", icon: Users },
-  { key: "prediccion", label: "Predicción", icon: TrendingUp },
-  { key: "seguimiento", label: "Seguimiento", icon: Activity },
-  { key: "estadisticas", label: "Estadísticas", icon: BarChart3 },
-];
-
 const PROGRAMAS = ["Ing. Software", "Ing. Sistemas", "Ing. Civil", "Ing. Industrial", "Ing. Electrónica"];
 
 const NOMBRES = [
@@ -118,40 +110,6 @@ const ESTUDIANTES = construirDataset();
 /* ------------------------------------------------------------------ */
 /* Subcomponentes                                                      */
 /* ------------------------------------------------------------------ */
-function Sidebar({ active = "estudiantes", onNavigate }) {
-  return (
-    <aside className="sidebar">
-      <div className="sidebar__brand">
-        <div className="sidebar__brand-icon"><School size={17} /></div>
-        <div>
-          <div className="sidebar__brand-name">SIPD-UDES</div>
-          <div className="sidebar__brand-sub">UNIVERSIDAD DE SANTANDER</div>
-        </div>
-      </div>
-      <nav className="sidebar__nav">
-        {NAV_ITEMS.map((item) => {
-          const Icon = item.icon;
-          const isActive = active === item.key;
-          return (
-            <button
-              key={item.key}
-              className={`sidebar__nav-item ${isActive ? "sidebar__nav-item--active" : ""}`}
-              onClick={() => onNavigate && onNavigate(item.key)}
-            >
-              <Icon size={16} />
-              {item.label}
-            </button>
-          );
-        })}
-      </nav>
-      <div className="sidebar__footer">
-        <div className="sidebar__footer-title">FACULTAD DE INGENIERÍA</div>
-        <div className="sidebar__footer-version">Versión 2.4.1</div>
-      </div>
-    </aside>
-  );
-}
-
 function Header() {
   return (
     <div className="students-header">

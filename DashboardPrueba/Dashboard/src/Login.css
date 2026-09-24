@@ -5,8 +5,10 @@
 
 .login-page {
   min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
   background:
-    radial-gradient(circle at 15% 20%, rgba(62, 111, 184, 0.2), transparent 45%),
+    radial-gradient(circle at 5% 20%, rgba(62, 111, 184, 0.2), transparent 45%),
     radial-gradient(circle at 85% 80%, rgba(62, 111, 184, 0.13), transparent 40%),
     #1B3358;
   display: flex;

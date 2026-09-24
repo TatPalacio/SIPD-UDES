@@ -1,24 +1,16 @@
 import React from "react";
 import {
-  LayoutGrid, Users, TrendingUp, Activity, BarChart3, Bell,
-  Smile, Meh, Frown, School,
+  Users, Bell, Smile, Meh, Frown,
 } from "lucide-react";
 import {
   ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
 } from "recharts";
 import "./Home.css";
+import Sidebar from "./components/Sidebar.jsx";
 
 /* ------------------------------------------------------------------ */
 /* Datos (vendrán del backend vía API — se dejan aquí como mock)       */
 /* ------------------------------------------------------------------ */
-const NAV_ITEMS = [
-  { key: "dashboard", label: "Inicio", icon: LayoutGrid },
-  { key: "estudiantes", label: "Estudiantes", icon: Users },
-  { key: "prediccion", label: "Predicción", icon: TrendingUp },
-  { key: "seguimiento", label: "Seguimiento", icon: Activity },
-  { key: "estadisticas", label: "Estadísticas", icon: BarChart3 },
-];
-
 const INDICADORES = {
   total: 1247,
   bajo: { valor: 834, pct: 66.9 },
@@ -54,44 +46,6 @@ const ATENCION_INMEDIATA = [
 /* ------------------------------------------------------------------ */
 /* Subcomponentes                                                      */
 /* ------------------------------------------------------------------ */
-function Sidebar({ active = "dashboard", onNavigate }) {
-  return (
-    <aside className="sidebar">
-      <div className="sidebar__brand">
-        <div className="sidebar__brand-icon">
-          <School size={17} />
-        </div>
-        <div>
-          <div className="sidebar__brand-name">SIPD-UDES</div>
-          <div className="sidebar__brand-sub">UNIVERSIDAD DE SANTANDER</div>
-        </div>
-      </div>
-
-      <nav className="sidebar__nav">
-        {NAV_ITEMS.map((item) => {
-          const Icon = item.icon;
-          const isActive = active === item.key;
-          return (
-            <button
-              key={item.key}
-              className={`sidebar__nav-item ${isActive ? "sidebar__nav-item--active" : ""}`}
-              onClick={() => onNavigate && onNavigate(item.key)}
-            >
-              <Icon size={16} />
-              {item.label}
-            </button>
-          );
-        })}
-      </nav>
-
-      <div className="sidebar__footer">
-        <div className="sidebar__footer-title">FACULTAD DE INGENIERÍA</div>
-        <div className="sidebar__footer-version">Versión 2.4.1</div>
-      </div>
-    </aside>
-  );
-}
-
 function Header() {
   return (
     <div className="dashboard-header">

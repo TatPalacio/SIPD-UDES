@@ -1,0 +1,204 @@
+/* ===================================================================
+   DetalleEstudiante.css — SIPD-UDES
+   Vista: Perfil de Riesgo Individual
+   Consultada por docentes, asesores y directivos para revisar
+   el caso completo de un estudiante puntual.
+=================================================================== */
+
+:root {
+  --navy: #1B3358;
+  --blue: #2C5AA0;
+  --blue-bg: #EAF0F8;
+  --bg: #F4F5F7;
+  --card: #FFFFFF;
+  --border: #E7E9EE;
+  --text: #1F2937;
+  --text-muted: #6B7280;
+  --alto: #D9453A;
+  --alto-bg: #FCEAE9;
+  --medio: #DB9A1F;
+  --medio-bg: #FCF2DF;
+  --bajo: #279A55;
+  --bajo-bg: #E7F6EC;
+}
+
+* { box-sizing: border-box; }
+
+.detail-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 220px;
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 16px;
+  flex-shrink: 0;
+}
+.sidebar__brand { display: flex; align-items: center; gap: 10px; padding: 0 4px 22px; }
+.sidebar__brand-icon {
+  width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.sidebar__brand-name { font-weight: 800; font-size: 14.5px; letter-spacing: -0.2px; }
+.sidebar__brand-sub { font-size: 9.5px; color: #B9C6DA; letter-spacing: 0.3px; }
+.sidebar__nav { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+.sidebar__nav-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 9px;
+  border: none; background: transparent; color: #C4D0E2; font-size: 13.5px; font-weight: 500;
+  text-align: left; cursor: pointer; font-family: inherit; transition: background 0.15s ease, color 0.15s ease;
+}
+.sidebar__nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sidebar__nav-item--active { background: rgba(255,255,255,0.12); color: #fff; font-weight: 700; }
+.sidebar__footer { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+.sidebar__footer-title { font-size: 11px; color: #9FAECB; font-weight: 700; letter-spacing: 0.3px; }
+.sidebar__footer-version { font-size: 10.5px; color: #7C8CAE; margin-top: 2px; }
+
+/* ---------------- Main / Header ---------------- */
+.detail-main { flex: 1; min-width: 0; }
+
+.detail-header {
+  display: flex; justify-content: space-between; align-items: flex-start; padding: 22px 30px 18px;
+}
+.detail-header__title { font-size: 20px; font-weight: 800; color: var(--text); margin: 0; }
+.detail-header__subtitle { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.detail-header__actions { display: flex; align-items: center; gap: 18px; }
+.detail-header__bell { position: relative; display: flex; }
+.detail-header__bell-dot {
+  position: absolute; top: -2px; right: -2px; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--alto); border: 2px solid #fff;
+}
+.detail-header__user { display: flex; align-items: center; gap: 10px; }
+.detail-header__avatar {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;
+}
+.detail-header__user-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.detail-header__user-role { font-size: 11px; color: var(--text-muted); }
+
+/* ---------------- Content ---------------- */
+.detail-content { padding: 0 30px 30px; }
+
+.detail-back {
+  display: flex; align-items: center; gap: 6px; background: none; border: none;
+  color: var(--blue); font-size: 13px; font-weight: 700; cursor: pointer;
+  margin-bottom: 16px; padding: 0; font-family: inherit;
+}
+.detail-back:hover { text-decoration: underline; }
+
+/* Student summary card */
+.student-summary {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.student-summary__left { display: flex; align-items: center; gap: 16px; }
+.student-summary__avatar {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--blue-bg);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.student-summary__name { font-size: 17px; font-weight: 800; color: var(--text); }
+.student-summary__meta { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; }
+.student-summary__right { text-align: right; }
+.student-summary__prob { font-size: 20px; font-weight: 800; margin-top: 6px; }
+.student-summary__prob-label { font-size: 11px; color: var(--text-muted); }
+
+.student-summary__advisor {
+  display: flex; align-items: center; gap: 8px; margin-top: 10px;
+  font-size: 12px; color: var(--text-muted);
+}
+
+/* Risk badge (reutilizado en toda la app) */
+.risk-badge {
+  font-weight: 600; font-size: 12.5px; padding: 3px 10px; border-radius: 999px;
+  display: inline-block; white-space: nowrap;
+}
+.risk-badge--lg { font-size: 14px; padding: 5px 14px; }
+.risk-badge--alto { color: var(--alto); background: var(--alto-bg); }
+.risk-badge--medio { color: var(--medio); background: var(--medio-bg); }
+.risk-badge--bajo { color: var(--bajo); background: var(--bajo-bg); }
+
+/* Generic panel row */
+.detail-row { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.detail-panel {
+  flex: 1;
+  min-width: 320px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+.detail-panel__title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+
+/* Factor bars */
+.factor-item { margin-bottom: 14px; }
+.factor-item:last-child { margin-bottom: 0; }
+.factor-item__top { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; }
+.factor-item__label { color: var(--text); font-weight: 600; }
+.factor-item__value { font-weight: 700; }
+.factor-item__value--danger { color: var(--alto); }
+.factor-item__value--ok { color: var(--bajo); }
+.factor-item__track { height: 6px; background: #EEF0F3; border-radius: 999px; overflow: hidden; }
+.factor-item__fill { height: 100%; border-radius: 999px; }
+.factor-item__fill--danger { background: var(--alto); }
+.factor-item__fill--ok { background: var(--bajo); }
+
+/* Metric rows (interacción con plataforma) */
+.metric-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.metric-row:last-child { margin-bottom: 0; }
+.metric-row__left { display: flex; align-items: center; gap: 10px; }
+.metric-row__icon {
+  width: 30px; height: 30px; border-radius: 8px; background: var(--blue-bg);
+  display: flex; align-items: center; justify-content: center; color: var(--blue); flex-shrink: 0;
+}
+.metric-row__label { font-size: 13px; color: var(--text); font-weight: 500; }
+.metric-row__value { font-size: 14px; font-weight: 800; color: var(--text); }
+
+/* Alerts */
+.alert-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-radius: 10px; margin-bottom: 10px;
+}
+.alert-item:last-child { margin-bottom: 0; }
+.alert-item--alta { background: var(--alto-bg); }
+.alert-item--media { background: var(--medio-bg); }
+.alert-item--baja { background: #F4F5F7; }
+.alert-item__left { display: flex; align-items: center; gap: 10px; }
+.alert-item__type { font-size: 13px; font-weight: 600; color: var(--text); }
+.alert-item__right { display: flex; align-items: center; gap: 12px; }
+.alert-item__date { font-size: 12px; color: var(--text-muted); }
+.alert-item__priority {
+  font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: #fff;
+}
+
+/* Recommendation box for teachers/advisors */
+.recommendation-box {
+  background: var(--blue-bg);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.recommendation-box__title {
+  font-size: 12.5px; font-weight: 700; color: var(--blue); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+
+@media (max-width: 960px) {
+  .detail-panel { min-width: 100%; }
+}

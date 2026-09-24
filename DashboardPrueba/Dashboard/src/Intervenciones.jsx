@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import "./Seguimiento.css";
+import React, { useRef, useState } from "react";
+import "./Intervenciones.css";
+import Sidebar from "./components/Sidebar.jsx";
 
 const ESTUDIANTES = [
   { codigo: "EST-1001", nombre: "Juan Sebastián Mora" },
@@ -122,8 +123,10 @@ function formatearFecha(date) {
   return `${dia}/${mes}/${anio}`;
 }
 
-export default function Seguimiento() {
+export default function Intervenciones({ onNavigate }) {
+  const formRef = useRef(null);
   const [intervenciones, setIntervenciones] = useState(INTERVENCIONES_INICIALES);
+  const [intervencionEditando, setIntervencionEditando] = useState(null);
   const [filtroEstudiante, setFiltroEstudiante] = useState("todos");
   const [filtroEstado, setFiltroEstado] = useState("todos");
   const [filtroResponsable, setFiltroResponsable] = useState("todos");
@@ -153,6 +156,7 @@ export default function Seguimiento() {
 
   const handleCancelar = () => {
     setForm(FORM_INICIAL);
+    setIntervencionEditando(null);
   };
 
   const handleGuardar = () => {
@@ -160,9 +164,7 @@ export default function Seguimiento() {
       return;
     }
     const estudiante = ESTUDIANTES.find((e) => e.codigo === form.estudianteCodigo);
-    const nuevaIntervencion = {
-      id: Date.now(),
-      fecha: formatearFecha(new Date()),
+    const datosIntervencion = {
       estudianteCodigo: estudiante.codigo,
       estudianteNombre: estudiante.nombre,
       tipo: form.tipo,
@@ -170,20 +172,53 @@ export default function Seguimiento() {
       responsable: form.responsable,
       estado: form.estado,
     };
-    setIntervenciones((prev) => [nuevaIntervencion, ...prev]);
-    setForm(FORM_INICIAL);
+
+    if (intervencionEditando) {
+      setIntervenciones((prev) =>
+        prev.map((item) =>
+          item.id === intervencionEditando
+            ? { ...item, ...datosIntervencion }
+            : item
+        )
+      );
+    } else {
+      setIntervenciones((prev) => [
+        { id: Date.now(), fecha: formatearFecha(new Date()), ...datosIntervencion },
+        ...prev,
+      ]);
+    }
+
+    handleCancelar();
+  };
+
+  const mostrarFormulario = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleEditar = (intervencion) => {
+    setIntervencionEditando(intervencion.id);
+    setForm({
+      estudianteCodigo: intervencion.estudianteCodigo,
+      tipo: intervencion.tipo,
+      observaciones: intervencion.observaciones,
+      responsable: intervencion.responsable,
+      estado: intervencion.estado,
+    });
+    mostrarFormulario();
   };
 
   return (
-    <div className="seg-page">
-      <header className="seg-header">
-        <div>
-          <h1 className="seg-title">Seguimiento e Intervenciones</h1>
-          <p className="seg-subtitle">
-            Registro, control y acompañamiento para estudiantes con alertas preventivas activas
-          </p>
-        </div>
-      </header>
+    <div className="seg-layout">
+      <Sidebar active="intervenciones" onNavigate={onNavigate} />
+      <main className="seg-page">
+        <header className="seg-header">
+          <div>
+            <h1 className="seg-title">Intervenciones</h1>
+            <p className="seg-subtitle">
+              Registro, control y acompañamiento para estudiantes con alertas preventivas activas
+            </p>
+          </div>
+        </header>
 
       <section className="seg-panel">
         <div className="seg-panel-top">
@@ -191,7 +226,7 @@ export default function Seguimiento() {
             <h2>Bitácora de Intervenciones</h2>
             <span className="seg-pill">{activasHoy} Activas hoy</span>
           </div>
-          <button type="button" className="btn btn--primary" onClick={handleGuardar}>
+          <button type="button" className="btn btn--primary" onClick={mostrarFormulario}>
             <span className="btn-icon">+</span>
             Nueva Intervención
           </button>
@@ -284,7 +319,11 @@ export default function Seguimiento() {
                     </span>
                   </td>
                   <td>
-                    <button type="button" className="seg-link-btn">
+                    <button
+                      type="button"
+                      className="seg-link-btn"
+                      onClick={() => handleEditar(item)}
+                    >
                       Editar
                     </button>
                   </td>
@@ -302,10 +341,10 @@ export default function Seguimiento() {
         </div>
       </section>
 
-      <section className="seg-form-card">
+      <section className="seg-form-card" ref={formRef}>
         <h3 className="seg-form-titulo">
           <span className="seg-form-icono">+</span>
-          Registrar Nueva Intervención
+          {intervencionEditando ? "Editar Intervención" : "Registrar Nueva Intervención"}
         </h3>
 
         <div className="seg-form-grid">
@@ -375,10 +414,11 @@ export default function Seguimiento() {
             Cancelar
           </button>
           <button type="button" className="btn btn--primary" onClick={handleGuardar}>
-            Guardar Intervención
+            {intervencionEditando ? "Actualizar Intervención" : "Guardar Intervención"}
           </button>
         </div>
       </section>
+      </main>
     </div>
   );
 }

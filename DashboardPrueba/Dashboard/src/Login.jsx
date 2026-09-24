@@ -19,9 +19,8 @@ export default function Login({ onLogin }) {
     <div className="login-page">
       <div className="login-card">
         <div className="login-card__icon">
-          <School size={30} color="#2C5AA0" />
+          <School size={50} color="#2C5AA0" />
         </div>
-
         <h1 className="login-card__title">SIPD-UDES</h1>
         <div className="login-card__institution">UNIVERSIDAD DE SANTANDER</div>
         <p className="login-card__description">
@@ -29,17 +28,17 @@ export default function Login({ onLogin }) {
         </p>
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <label className="login-form__label" htmlFor="email">
-            Correo Electrónico Institucional
+          <label className="login-form__label" htmlFor="usuario">
+            Usuario
           </label>
           <div className="login-form__field">
             <Mail size={16} className="login-form__icon" />
             <input
-              id="email"
-              type="email"
-              name="email"
-              defaultValue="Correo Electrónico"
-              autoComplete="email"
+              id="usuario"
+              type="text"
+              name="usuario"
+              defaultValue="Usuario"
+              autoComplete="username"
             />
           </div>
 
@@ -74,7 +73,7 @@ export default function Login({ onLogin }) {
       </div>
 
       <div className="login-page__footer">
-        © 2026 Universidad de Santander — Facultad de Ingeniería
+        © 2026 Universidad de Santander — Ingeniería de Software
         <br />
         Prototipo académico · Trabajo de grado SIPD-UDES
       </div>
